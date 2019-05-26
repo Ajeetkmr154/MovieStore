@@ -13,7 +13,21 @@ namespace MovieStore.Controllers
         public ActionResult Random()
         {
             var Movie = new Movie() { Name="Ajeet Kumar"};
-            return View(Movie);
+            return Content("Hello");
+        }
+
+        public ActionResult Edit(int? actionResult, string sortBy)
+        {
+            if (!actionResult.HasValue == true)
+                actionResult = 1;
+            if (string.IsNullOrEmpty(sortBy))
+                sortBy = "Name";
+            return Content(string.Format("ActionResult={0}& SortBy={1}", actionResult, sortBy));
+        }
+        [Route("movies/released/{year}/{month}")]
+        public ActionResult ByReleaseDate(int year, int month)
+        {
+            return Content(year+"/"+ month);
         }
     }
 }
